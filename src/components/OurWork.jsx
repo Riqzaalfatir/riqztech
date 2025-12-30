@@ -9,19 +9,29 @@ const OurWork = () => {
 
     const workData = [
         {
-            title: 'Landing Page',
+            title: 'Konsultan Pajak',
             description: 'Website konsultan pajak dengan struktur informasi rapi dan layanan mudah dipahami...',
             image: assets.konsultan
         },
         {
-            title: 'Website Berita',
+            title: 'Infobandungku',
             description: 'Platform berita digital dengan desain responsif dan sistem konten yang rapi...',
             image: assets.infobandungku
         },
         {
-            title: 'Website Custom',
+            title: 'Alifatimah',
             description: 'Website digital marketing wedding untuk meningkatkan branding dan jangkauan klien pernikahan.',
             image: assets.alifatimah
+        },
+        {
+            title: 'PT.Kurnia Usaha',
+            description: 'Website jasa cargo laut dirancang untuk memperkuat citra perusahaan dan menjangkau lebih banyak klien logistik..',
+            image: assets.kurnia
+        },
+        {
+            title: 'PT.AKI',
+            description: 'Website perusahaan kontraktor digunakan sebagai sarana informasi dan presentasi perusahaan..',
+            image: assets.kontraktor
         }
     ]
   return (

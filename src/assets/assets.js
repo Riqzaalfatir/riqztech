@@ -42,6 +42,8 @@ import teropong from './teropong.png'
 import xl from './xl.png'
 import swamedia from './swamedia.webp'
 import icommits from './icommits.jpg'
+import kurnia from './kurnia.png'
+import kontraktor from './kontraktor.png'
 
 
 export const company_logos = [
@@ -88,7 +90,9 @@ const assets = {
   teropong,
   xl,
   swamedia,
-  icommits
+  icommits,
+  kurnia,
+  kontraktor
 }
 
 export default assets
