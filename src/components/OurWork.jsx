@@ -14,9 +14,9 @@ const OurWork = () => {
             image: assets.konsultan
         },
         {
-            title: 'Infobandungku',
-            description: 'Platform berita digital dengan desain responsif dan sistem konten yang rapi...',
-            image: assets.infobandungku
+            title: 'Miracle Mates',
+            description: 'Project Personal Woocomerce Brand Distro di Bandung...',
+            image: assets.miracle
         },
         {
             title: 'Alifatimah',
@@ -32,6 +32,11 @@ const OurWork = () => {
             title: 'PT.AKI',
             description: 'Website perusahaan kontraktor digunakan sebagai sarana informasi dan presentasi perusahaan..',
             image: assets.kontraktor
+        },
+        {
+            title: 'Infobandungku',
+            description: 'Platform berita digital dengan desain responsif dan sistem konten yang rapi...',
+            image: assets.infobandungku
         }
     ]
   return (

@@ -44,6 +44,7 @@ import swamedia from './swamedia.webp'
 import icommits from './icommits.jpg'
 import kurnia from './kurnia.png'
 import kontraktor from './kontraktor.png'
+import miracle from './miracle.png'
 
 
 export const company_logos = [
@@ -92,7 +93,8 @@ const assets = {
   swamedia,
   icommits,
   kurnia,
-  kontraktor
+  kontraktor,
+  miracle
 }
 
 export default assets
