@@ -45,7 +45,7 @@ import icommits from './icommits.jpg'
 import kurnia from './kurnia.png'
 import kontraktor from './kontraktor.png'
 import miracle from './miracle.png'
-
+import kurniarental from './kurniarental.png'
 
 export const company_logos = [
   microsoft_logo,
@@ -94,7 +94,8 @@ const assets = {
   icommits,
   kurnia,
   kontraktor,
-  miracle
+  miracle,
+  kurniarental
 }
 
 export default assets

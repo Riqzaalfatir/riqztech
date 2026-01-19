@@ -9,6 +9,12 @@ const OurWork = () => {
 
     const workData = [
         {
+            title: 'Kurnia Rental',
+            description: 'Website Rental Mobil dengan Sistem Admin dan Range Harga untuk Memilah Armada',
+            image: assets.kurniarental,
+            url: 'https://kurnia-rental.vercel.app/'
+        },
+        {
             title: 'Konsultan Pajak',
             description: 'Website konsultan pajak dengan struktur informasi rapi dan layanan mudah dipahami...',
             image: assets.konsultan
@@ -59,9 +65,11 @@ const OurWork = () => {
                   viewport={{once: true}}
                 
                 key={index} className='hover:scale-102 duration-500 transition-all cursor-pointer'>
-                    <img src={work.image} className='w-full aspect-video object-cover rounded-xl' alt="" />
-                    <h3 className='mt-3 mb-2 text-lg font-semibold'>{work.title}</h3>
+                    <a href={work.url} target="_blank" rel="noopener noreferrer">
+                     <img src={work.image} className='w-full aspect-video object-cover rounded-xl' alt="" />
+                     <h3 className='mt-3 mb-2 text-lg font-semibold'>{work.title}</h3>
                     <p className='text-sm opacity-60 w-5/6'>{work.description}</p>
+                    </a>
                 </motion.div>
             ))
         }
