@@ -1,109 +1,106 @@
-import React from 'react'
-import assets from "../assets/assets";
-import { useState } from 'react';
-import ThemeToggleBtn from './ThemeToggleBtn';
-import { motion } from "motion/react"
+import React, {useState, useRef, useEffect} from "react";
+import { FaMoon, FaPaperPlane, FaBars, FaTimes } from "react-icons/fa";
 
-const Navbar = ({ theme, setTheme }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+const Navbar = () => {
+  const menuItems = [
+    { name: "Home", link: "#hero" },
+    { name: "About", link: "#about" },
+    { name: "Project", link: "#project" },
+    { name: "Layanan", link: "#services" },
+    { name: "faq", link: "#faq" },
+    { name: "Konsulatsi", link: "#contact" },
+  ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+  const [isOpen, setIsOpen] = useState(false)
+  const navRef = useRef(null);
+
+  useEffect(() => {
+    const activeItem = navRef.current?.children[activeIndex];
+    if (activeItem) {
+      setIndicatorStyle({
+        width: activeItem.offsetWidth,
+        left: activeItem.offsetLeft,
+      })
+    }
+  }, [activeIndex])
 
   return (
-    <>
-      {/* NAVBAR (TIDAK DIUBAH) */}
-      <motion.div
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="flex justify-between items-center px-4 md:px-12 lg:px-24 xl:px-40 py-4 sticky top-0 z-20 backdrop-blur-xl bg-white/50 dark:bg-gray-900/70"
-      >
-        <h1 className="text-2xl font-bold text-black dark:text-white">
-          Riqz<span className="text-blue-600">Tech</span>
-        </h1>
+    <header className="w-full pt-6 flex justify-center sticky top-0 z-50 backdrop-blur-md bg-white/80">
+      <div className="w-[95%] max-w-7xl rounded-full 
+                      shadow-lg px-8 py-4 flex items-center border border-slate-50 justify-between relative ">
 
-        {/* MENU DESKTOP */}
-        <div className="hidden md:flex items-center gap-5 text-gray-700 dark:text-white text-sm xl:ml-18 md:ml-16">
-          <a href="#">Home</a>
-          <a href="#services">Layanan</a>
-          <a href="#our-work">Partner</a>
-          <a href="#contact-us">Contact</a>
+        {/* LOGO */}
+        <div className="text-xl md:text-2xl font-bold">
+          Riqz<span className="text-gray-500">Tech</span>
         </div>
 
-        {/* RIGHT ACTION */}
-        <div className="flex items-center gap-3">
-          <ThemeToggleBtn theme={theme} setTheme={setTheme} />
+        {/* MENU */}
+        <nav ref={navRef} className="relative hidden md:flex items-center gap-10 
+                        text-xs font-semibold uppercase tracking-wider text-gray-600">
 
-          {/* HAMBURGER MOBILE */}
-          <img
-            src={assets.menu_icon}
-            onClick={() => setSidebarOpen(true)}
-            className="w-8 md:hidden cursor-pointer"
-            alt="menu"
-          />
+                  {menuItems.map((item, index) => (
+                    <a 
+                      key={index}
+                      href={item.link}
+                      onClick={() => setActiveIndex(index)}
+                      onMouseEnter={() => setActiveIndex(index)}
+                      className={`cursor-pointer transition-colors duration-300 ${activeIndex === index ? "text-black" : "hover:text-black"}`}>
+                        {item.name}
+                    </a>
+                  ))}
 
-          {/* BUTTON DESKTOP */}
-          <a
-            href="#contact-us"
-            className="hidden md:flex bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-semibold"
-          >
-            Fee Project
-          </a>
-        </div>
-      </motion.div>
-
-      {/* OVERLAY (BARU) */}
-      {sidebarOpen && (
-        <div
-          onClick={() => setSidebarOpen(false)}
-          className="fixed inset-0 bg-black/40 z-30 md:hidden"
-        />
-      )}
-
-      {/* SIDEBAR MOBILE (BARU) */}
-      <div
-        className={`
-          fixed top-0 right-0 h-dvh w-64
-          bg-blue-600 text-white
-          z-40 md:hidden
-          transform transition-transform duration-300
-          ${sidebarOpen ? "translate-x-0" : "translate-x-full"}
-        `}
-      >
-        <button
-          className="absolute top-4 right-4 text-2xl"
-          onClick={() => setSidebarOpen(false)}
-        >
-          ✕
-        </button>
-
-        <nav className="flex flex-col gap-6 mt-20 px-6 text-lg">
-          <a onClick={() => setSidebarOpen(false)} href="#">Home</a>
-          <a onClick={() => setSidebarOpen(false)} href="#services">Layanan</a>
-          <a onClick={() => setSidebarOpen(false)} href="#our-work">Partner</a>
-          <a onClick={() => setSidebarOpen(false)} href="#contact-us">Contact</a>
+                <span className="absolute -bottom-2 h-[2px] bg-black transition-all duration-300 ease-in-out" style={indicatorStyle} />
         </nav>
+
+        {/* RIGHT SIDE */}
+        <div className="hidden md:flex items-center gap-6">
+
+          <FaMoon className="text-lg cursor-pointer text-gray-700 hover:text-black transition" />
+
+          <a href="https://wa.link/02z9gx" target="_blank" rel="noopoper noreferfer"
+           className="bg-black text-white px-6 py-2 
+                             rounded-full flex items-center gap-3 
+                             font-semibold hover:bg-gray-500 transition">
+            Diskusi Project
+            <FaPaperPlane className="text-sm" />
+          </a>
+
+        </div>
+
+        <div className="md:hidden flex items-center gap-4">
+          <FaMoon className="text-lg cursor-pointer text-gray-700" />
+          <button onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-2xl mt-4 p-6 flex flex-col gap-6 md:hidden animate-slideDown">
+            {menuItems.map((item, index) => (
+              <a key={index}
+                 href={item.link}
+                 onClick={() => {
+                  setActiveIndex(index);
+                  setIsOpen(false);
+                 }} className="text-gray-700 font-semibold hover:text-black transition">
+                  {item.name}
+                 </a>
+            ))}
+            <a href="https://wa.link/02z9gx"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="bg-black text-white px-6 py-3 rounded-full flex justify-center items-center gap-3 font-semibold hover:bg-gray-700 transition">
+                Diskusi Project
+                <FaPaperPlane className="text-sm"></FaPaperPlane>
+               </a>
+          </div>
+        )}
+
       </div>
-    </>
+    </header>
   );
 };
 
-{/* <div className='flex justify-between items-center px-4 sm:px-12 lg:px-24 xl:px-40 py-4 sticky top-0 z-20 backdrop-blur-xl font-medium bg-white/50 dark:bg-gray-900/70'>
-  <h1 className="text-2xl font-bold tracking-tight text-black dark:text-white lg:text-3xl">Riqz<span className="text-blue-600 dark:text-blue-400">Tech</span></h1>       
-           <div className={`text-gray-700 dark:text-white sm:text-sm ${!sidebarOpen ? 'max-sm:w-0 overflow-hidden' :'max-sm:w-60 max-sm:pl-10'} max-sm:fixed top-0 bottom-0 right-0 max-sm:min-h-screen max-sm:h-full max-sm:flex-col max-sm:bg-primary max-sm:text-white max-sm:pt-20 flex sm:items-center gap-5 transition-all`}>
-            <img src={assets.close_icon} alt="" className='w-5 absolute right-4 top-4 sm:hidden' onClick={() => setSidebarOpen(false)} />
-            <a onClick={()=>setSidebarOpen(false)} href="#" className='sm:hover:border-b ml-15'>Home</a>
-            <a onClick={()=>setSidebarOpen(false)} href="#services" className='sm:hover:border-b'>Layanan</a>
-            <a onClick={()=>setSidebarOpen(false)} href="#our-work" className='sm:hover:border-b'>Partner</a>
-            <a onClick={()=>setSidebarOpen(false)} href="#contact-us" className='sm:hover:border-b'>Contact</a>
-        </div>
-        <div className='flex items-center gap-2 sm:gap-4'>
-            <ThemeToggleBtn theme={theme} setTheme={setTheme}/>
-            <img src={theme === 'dark' ? assets.menu_icon_dark : assets.menu_icon} alt="" onClick={() => setSidebarOpen(true)} className='w-8 sm:hidden ' />
-            <a href="#contact-us" className='text-sm max-sm:hidden flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-full cursor-pointer hover:scale-103 transition-all font-semibold'>
-                Fee Project<img src={assets.arrow_icon} width={14} alt="" />
-            </a>
-        </div>
-</div> */}
-
-export default Navbar
-
-
+export default Navbar;

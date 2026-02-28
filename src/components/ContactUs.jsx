@@ -1,110 +1,228 @@
-import Title from './Title'
-import assets from '../assets/assets'
-import { toast } from 'react-hot-toast'
-import { motion } from "motion/react"
-
+import React, { useState } from "react";
+import { FaCheck, FaInstagram, FaWhatsapp, FaTwitter  } from "react-icons/fa";
 
 const ContactUs = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
-  const onSubmit = async (event) => {
-    event.preventDefault()
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const formData = new FormData(event.target)
-    formData.append("access_key", "80906cc9-40f6-425b-9ce2-97e5da85260a")
+  // FIXED: handleChange (typo dibenerkan)
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCheckbox = (value) => {
+    if (services.includes(value)) {
+      setServices(services.filter((item) => item !== value));
+    } else {
+      setServices([...services, value]);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("http://localhost:5000/contact", {
         method: "POST",
-        body: formData
-      })
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          services,
+        }),
+      });
 
-      const data = await response.json()
+      const data = await res.json();
 
       if (data.success) {
-        toast.success('Thank you for submission')
-        event.target.reset()
+        alert("Pesan Berhasil Dikirim!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+        setServices([]);
       } else {
-        toast.error(data.message)
+        alert("Gagal mengirim pesan");
       }
-
     } catch (error) {
-      toast.error(error.message)
+      alert("Server Tidak Terhubung");
     }
-  }
+
+    setLoading(false);
+  };
 
   return (
-    <motion.div
-     initial ="hidden"
-    whileInView="visible"
-    viewport={{once: true}}
-    transition={{staggerChildren: 0.2 }}
-  
-      id="contact-us"
-      className="flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white"
-    >
-      <Title
-        title="Hubungi Kami"
-        desc="Konsultasikan kebutuhan website Anda dan temukan solusi digital yang tepat."
-      />
+    <section id="contact"
+     className="py-20">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-      <motion.form
-      initial={{opacity: 0, y: 30 }}
-            whileInView={{opacity: 1, y: 0 }}
-            transition={{duration: 0.5, delay: 0.4}}
-            viewport={{once: true}}
+          {/* LEFT SIDE */}
+          <div>
+            <h1 className="text-4xl font-bold mb-6">
+              Hubungi Riqztech
+            </h1>
 
-        onSubmit={onSubmit}
-        className="grid sm:grid-cols-2 gap-3 sm:gap-5 max-w-2xl w-full"
-      >
-        <div>
-          <p className="mb-2 text-sm font-medium">Nama Lengkap</p>
-          <div className="flex pl-3 rounded-lg border border-gray-300 dark:border-gray-600">
-            <img src={assets.person_icon} alt="" />
-            <input
-              name="name"
-              type="text"
-              placeholder="Berikan Nama Lengkap anda"
-              className="w-full p-3 text-sm outline-none"
-              required
-            />
+            <p className="text-gray-800 text-sm mb-3 leading-relaxed text-justify pl-1">
+              RiqzTech adalah web portfolio pribadi saya yang menampilkan data diri, kumpulan project, serta layanan pembuatan website yang profesional dan terpercaya. Saya menghadirkan solusi digital yang modern, responsif, dan sesuai kebutuhan, baik untuk personal, bisnis, hingga pengembangan brand Anda.
+            </p>
+
+            <p className="text-gray-800 text-sm mb-6 leading-relaxed text-justify pl-1">
+              Dengan pengalaman dalam pengembangan website dan proses kerja yang terstruktur, saya berkomitmen memberikan hasil terbaik di setiap project. Setiap layanan dikerjakan dengan det
+            </p>
+
+            <ul className="space-y-3 text-gray-900 pl-3 mb-6">
+              <li className="flex items-center gap-4">
+                <div className="bg-black w-5 h-5 flex items-center justify-center rounded-full">
+                  <FaCheck className="text-white text-xs" />
+                </div>
+                <span className="text-sm font-bold">Website modern & responsive</span>
+              </li>
+
+              <li className="flex items-center gap-4">
+                <div className="bg-black w-5 h-5 flex items-center justify-center rounded-full">
+                  <FaCheck className="text-white text-xs" />
+                </div>
+                <span className="text-sm font-bold">Clean code & scalable</span>
+              </li>
+
+              <li className="flex items-center gap-4">
+                <div className="bg-black w-5 h-5 flex items-center justify-center rounded-full">
+                  <FaCheck className="text-white text-xs" />
+                </div>
+                <span className="text-sm font-bold">Support & maintenance</span>
+              </li>
+            </ul>
+
+            <p className="text-gray-800 text-sm leading-relaxed mb-4 text-justify pl-1">Hubungi kami melalui media sosial resmi atau WhatsApp untuk mendapatkan informasi harga, ketersediaan mobil, serta promo terbaru dari Kurnia Rental Mobil.</p>
+
+            <ul className="pl-3 space-y-3 mb-6 ">
+              <li className="flex items-center gap-3 font-semibold text-sm">
+                <FaWhatsapp className="text-xl md:text-2xl font-bold" />
+                +62 831-0285-1438
+              </li>
+              <li className="flex items-center gap-3 font-semibold text-sm">
+                <FaInstagram className="text-xl md:text-2xl font-bold" />
+                @riqzaaf
+              </li>
+              <li className="flex items-center gap-3 font-semibold text-sm">
+                <FaTwitter className="text-xl md:text-2xl font-bold" />
+                riqzapersonal
+              </li>
+            </ul>
+
+            <p className="text-gray-800 text-sm leading-relaxed text-justify pl-1">Percayakan perjalanan Anda bersama Kurnia Rental Mobil. Kami siap menjadi partner transportasi terbaik untuk setiap kebutuhan Anda.</p>
+          </div>
+
+          {/* RIGHT SIDE FORM */}
+          <div className="bg-white p-8 rounded-xl shadow-2xl mt-10">
+            <h2 className="text-2xl font-semibold mb-6">
+              Hubungi Kami
+            </h2>
+
+            {/* FIXED: Form tidak langsung ditutup */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Nama Depan"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  required
+                  className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
+                />
+
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Nama Belakang"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  required
+                  className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
+                />
+              </div>
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
+              />
+
+              <input
+                type="text"
+                name="phone"
+                placeholder="Nomor WhatsApp"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
+              />
+
+              <textarea
+                name="message"
+                placeholder="Detail kebutuhan website..."
+                value={formData.message}
+                onChange={handleChange}
+                className="border h-28 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
+              />
+
+              <div className="mb-12">
+                <p className="font-bold mb-4">Layanan</p>
+                <div className="grid grid-cols-1  md:grid-cols-2 gap-4 text-sm">
+                  {[
+                    "Landing Page",
+                    "Company Profile",
+                    "E-Commerce",
+                    "Web App Custom",
+                  ].map((item) => (
+                    <label key={item} className="flex items-center gap-3">
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckbox(item)}
+                        checked={services.includes(item)}
+                      />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-black text-white py-3 rounded-xl font-semibold transition"
+              >
+                {loading ? "Mengirim..." : "Kirim Pesan"}
+              </button>
+            </form>
           </div>
         </div>
+      </div>
+    </section>
+  );
+};
 
-        <div>
-          <p className="mb-2 text-sm font-medium">Email </p>
-          <div className="flex pl-3 rounded-lg border border-gray-300 dark:border-gray-600">
-            <img src={assets.email_icon} alt="" />
-            <input
-              name="email"
-              type="email"
-              placeholder="Berikan Email Anda"
-              className="w-full p-3 text-sm outline-none"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="sm:col-span-2">
-          <p className="mb-2 text-sm font-medium">Pesan Tambahan</p>
-          <textarea
-            name="message"
-            rows={8}
-            placeholder="Berikan Kami Pesan Tambahan"
-            className="w-full p-3 text-sm outline-none rounded-lg border border-gray-300 dark:border-gray-600"
-            required
-          />
-        </div>
-
-        <button
-          type="submit"
-          className="w-max flex gap-2 bg-primary text-white text-sm px-10 py-3 rounded-full cursor-pointer hover:scale-105 transition-all"
-        >
-          Kirim
-          <img src={assets.arrow_icon} alt="" className="w-4" />
-        </button>
-      </motion.form>
-    </motion.div>
-  )
-}
-
-export default ContactUs
+export default ContactUs;

@@ -1,0 +1,115 @@
+import { motion, useScroll, useTransform, useSpring } from "framer-motion"
+import { useRef } from "react"
+
+const ProsesSection = () => {
+    const ref = useRef(null)
+
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end end"]
+    })
+
+    const rawHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+
+    const lineheight = useSpring(rawHeight, {
+        stiffness: 20,  // makin kecil makin lembut
+        damping: 20
+    })
+
+    return (
+        <section
+            id="proses"
+            ref={ref}
+            className="relative py-20 md:pt-30 md:pb-30"
+        >
+            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20">
+
+                {/* LEFT */}
+                <div className="md:sticky md:top-24 self-start">
+                    <div className="mb-6">
+                        <h4 className="font-semibold mb-1 text-xs tracking-wider">
+                            OUR PROCESS
+                        </h4>
+                        <div className="border w-16 md:w-21 border-slate-800"></div>
+                    </div>
+
+                    <div className="pl-1 md:pl-2">
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight md:leading-16">
+                            Alur Kerja <br />
+                            <span className="text-gray-400">
+                                Terstuktur & <br /> Efektif
+                            </span>
+                        </h2>
+
+                        <p className="text-gray-500 max-w-md text-sm sm:text-base md:text-md font-semibold leading-relaxed">
+                            Kami menggali lebih dalam tujuan Anda untuk menyelaraskan strategi teknis dengan arah bisnis Anda.
+                        </p>
+                    </div>
+                </div>
+
+                {/* RIGHT TIMELINE */}
+                <div className="relative">
+
+                    {/* LINE */}
+                    <div className="absolute top-0 left-3 md:left-0 w-[2px] h-full bg-gray-300">
+                        <motion.div
+                            style={{ height: lineheight }}
+                            className="w-full bg-black origin-top"
+                        />
+                    </div>
+
+                    {/* STEP */}
+                    {[
+                        {
+                            num: "01",
+                            title: "Konsultasi & Strategy",
+                            desc: "Kami mendalami visi Anda, menganalisis kebutuhan teknis, dan menyusun roadmap pengembangan yang paling efisien."
+                        },
+                        {
+                            num: "02",
+                            title: "Perencanaan & Prioritas",
+                            desc: "Pemetaan user journey, penetapan milestone proyek, dan deliverables agar proses transparan."
+                        },
+                        {
+                            num: "03",
+                            title: "Development & Iterasi",
+                            desc: "Proses coding dimulai dengan standar industri serta iterasi berdasarkan feedback."
+                        },
+                        {
+                            num: "04",
+                            title: "Quality Control & Audit",
+                            desc: "Debugging mendalam, peningkatan keamanan, serta optimalisasi performa."
+                        },
+                        {
+                            num: "05",
+                            title: "Serah Terima & Support",
+                            desc: "Peluncuran sistem ke produksi dan dukungan pemeliharaan pasca rilis."
+                        }
+                    ].map((item, i) => (
+                        <div
+                            key={i}
+                            className="relative pl-12 md:pl-16 mb-14 md:mb-22"
+                        >
+                            <div className="absolute left-0 md:-left-6 w-10 h-10 md:w-14 md:h-14 rounded-full bg-slate-50 border border-gray-300 shadow-sm flex items-center justify-center font-semibold text-sm md:text-base">
+                                {item.num}
+                            </div>
+
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+                                {item.title}
+                            </h3>
+
+                            <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-lg mb-6 md:mb-11 leading-relaxed">
+                                {item.desc}
+                            </p>
+
+                            <div className="border border-slate-800 w-10 md:w-12"></div>
+                        </div>
+                    ))}
+
+                </div>
+            </div>
+        </section>
+    )
+}
+
+export default ProsesSection

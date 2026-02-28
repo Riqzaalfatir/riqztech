@@ -1,50 +1,52 @@
-import React from 'react'
 import assets from '../assets/assets'
-import Title from '../components/Title'
 import ServiceCard from './ServiceCard'
-import { motion } from "motion/react"
+import { 
+  FaSearch, 
+  FaCode, 
+  FaRocket, 
+  FaBullhorn 
+} from "react-icons/fa";
 
 
 const services = () => {
 
-    const servicesData = [
-        {
-            title: 'Search Engine Optimization',
-            description: 'Kami bantu website anda tampil lebih optimal di hasil pencarian Google.',
-            icon: assets.ads_icon
-        },
-        {
-            title: 'Custom Website',
-            description: 'Solusi website custom yang dirancang khusus mendukung kebutuhan bisnis Anda.',
-            icon: assets.marketing_icon
-        },
-        {
-            title: 'Landing Page',
-            description: 'Landing page efektif untuk menarik calon pelanggan potensial.',
-            icon: assets.content_icon
-        },
-        {
-            title: 'Search Engine Marketing',
-            description: 'Strategi iklan digital untuk meningkatkan visibilitas dan traffic bisnis secara cepat.',
-            icon: assets.social_icon
-        },
-    ]
+   const servicesData = [
+  {
+    title: 'Search Engine Optimization',
+    description: 'Kami bantu website anda tampil lebih optimal di hasil pencarian Google.',
+    icon: FaSearch
+  },
+  {
+    title: 'Custom Website',
+    description: 'Solusi website custom yang dirancang khusus mendukung kebutuhan bisnis Anda.',
+    icon: FaCode
+  },
+  {
+    title: 'Landing Page',
+    description: 'Landing page efektif untuk menarik calon pelanggan potensial.',
+    icon: FaRocket
+  },
+  {
+    title: 'Search Engine Marketing',
+    description: 'Strategi iklan digital untuk meningkatkan visibilitas dan traffic bisnis secara cepat.',
+    icon: FaBullhorn
+  },
+]
   return (
-    <motion.div 
-    initial ="hidden"
-    whileInView="visible"
-    viewport={{once: true}}
-    transition={{staggerChildren: 0.2 }}
-    
-    id='services' className='relative flex flex-col items-center gap-7 px-4 sm:px-12 lg:px-24 xl:px-40 pt-30 text-gray-700 dark:text-white'>
-      <img src={assets.bgImage2} alt="" className='absolute -top-110 -left-70 -z-1 dark:hidden'/>
-      <Title title='Layanan Kami' desc='Dari perencanaan sampai eksekusi, kami bantu bisnis dan UMKM punya solusi digital yang relevan dan siap berkembang.'></Title>
+    <section id='services'
+      className='pt-20 pb-10'>
+      <div className="max-w-7xl mx-auto px-4">
+    <div className="flex flex-col md:flex-row  justify-between">
+      <h3 className='text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-center'>Layanan Saya</h3>
+      <p className='text-xs md:text-sm md:text-right max-w-md text-slate-700 mb-10 text-center'>Investasi cerdas untuk hasil berkualitas. Temukan spesifikasi teknis yang paling sesuai dengan ambisi proyek Anda.</p>
+    </div>
       <div className='flex flex-col md:grid grid-cols-2'>
         {servicesData.map((service, index)=>(
           <ServiceCard key={index} service={service} index={index} />
         ))}
       </div>
-    </motion.div>
+      </div> 
+    </section>
   )
 }
 

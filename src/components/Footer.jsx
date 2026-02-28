@@ -1,96 +1,113 @@
-import React from 'react'
-import assets from '../assets/assets'
-import { motion } from "motion/react"
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa"
+import { HiOutlineMail } from "react-icons/hi"
 
-const Footer = ({ theme }) => {
+const Footer = () => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className='bg-slate-50 dark:bg-gray-900 pt-10 sm:pt-10 mt-20 sm:mt-40 px-4 sm:px-10 lg:px-24 xl:px-40'
-    >
+    <section id="footer" className="px-4 sm:px-6 lg:px-4 py-10">
+      <footer className="bg-neutral-900 text-neutral-300 rounded-[32px] md:rounded-[48px] px-6 sm:px-10 md:px-12 py-12 md:py-16 relative overflow-hidden">
 
-      {/* ================= FOOTER ATAS ================= */}
-      <div className='flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12 xl:justify-between'> {/* 🔧 gap aman */}
+        {/* Background Text */}
+        <h1 className="absolute inset-0 flex items-center justify-center 
+        text-[80px] sm:text-[120px] md:text-[200px] 
+        font-bold text-white/2 pointer-events-none select-none">
+          RiqzTech
+        </h1>
 
-        {/* ===== KIRI ===== */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className='space-y-5 text-sm text-gray-700 dark:text-gray-400 min-w-0'>
-          <h1 className="text-2xl font-bold tracking-tight text-black dark:text-white lg:text-3xl">
-            Riqz<span className="text-blue-600 dark:text-blue-400">Tech</span>
-          </h1>
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
 
-          <p className='max-w-md '>
-            Solusi pembuatan website untuk meningkatkan tampilan dan kredibilitas bisnis.
-          </p>
+          {/* BRAND */}
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-8 rounded-full overflow-hidden">
+                <img src="/Maulanariqza.jpeg" alt="" className="object-cover object-bottom" />
+              </div>
+              <h2 className="text-lg sm:text-xl font-semibold text-white">
+                RiqzTech
+              </h2>
+            </div>
 
-          {/* 🔧 MENU FOOTER AMAN */}
-          <ul className='grid grid-cols-2 gap-y-2 gap-x-6 sm:flex sm:gap-8 text-center sm:text-left mt-4'>
-            <li><a href="#hero" className='hover:text-primary'>Home</a></li>
-            <li><a href="#services" className='hover:text-primary'>Layanan</a></li>
-            <li><a href="#our-work" className='hover:text-primary'>Partner</a></li>
-            <li><a href="#contact-us" className='hover:text-primary'>Contact</a></li>
-          </ul>
-        </motion.div>
+            <p className="text-neutral-400 leading-relaxed max-w-sm text-sm">
+              Membangun sistem digital yang kencang, aman, dan memikat.
+              Fokus pada kualitas kode untuk skalabilitas bisnis Anda.
+            </p>
 
-        {/* ===== KANAN ===== */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className='text-gray-600 dark:text-gray-400 min-w-0'>
-          <h3 className='font-bold text-slate-900 dark:text-white'>
-            Mitra Hubungan
-          </h3>
-
-          <p className='text-sm mt-2 mb-6'>
-            Hubungi Kami untuk Menjadi Mitra Bisnis Andalan dalam
-            <span className='block'>Solusi Digital...</span>
-          </p>
-
-          {/* 🔧 FORM DIGANTI GRID (LEBIH STABIL DARI FLEX) */}
-          <div className='grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-3 text-sm'>
-            <input
-              type="email"
-              placeholder='Kirimkan Email Anda'
-              className='w-full p-3 outline-none rounded dark:text-gray-200 bg-transparent border border-gray-300 dark:border-gray-500'
-            />
-            <button className='bg-primary text-white rounded px-6 py-3'>
-              Kirim
-            </button>
+            <div className="flex gap-3 sm:gap-4 mt-6">
+              {[FaGithub, FaLinkedin, FaTwitter, HiOutlineMail].map(
+                (Icon, i) => (
+                  <div
+                    key={i}
+                    className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-neutral-700 hover:bg-white hover:text-black transition duration-300 cursor-pointer"
+                  >
+                    <Icon size={18} />
+                  </div>
+                )
+              )}
+            </div>
           </div>
-        </motion.div>
-      </div>
 
-      <hr className='border-gray-300 dark:border-gray-600 my-6' />
+          {/* SITEMAP */}
+          <div>
+            <h3 className="text-xs sm:text-sm tracking-widest text-neutral-500 mb-6">
+              SITEMAP
+            </h3>
 
-      {/* ================= FOOTER BAWAH ================= */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-        viewport={{ once: true }}
-        className='pb-6 text-sm text-gray-500 flex flex-col sm:flex-row items-center justify-center sm:justify-between gap-4 text-center sm:text-left'
-      >
-        <p>Copyright 2025 Riqztech Digital Integra</p>
+            <ul className="space-y-3 sm:space-y-4">
+              {["Home", "About", "Project", "Layanan", "Testimoni", "FAQ"].map(
+                (item, i) => (
+                  <li key={i}>
+                    <a
+                      href="#"
+                      className="text-sm font-semibold hover:text-white transition"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
 
-        <div className='flex items-center gap-4'>
-          <a href="https://www.instagram.com/riqzaaf" target="_blank" rel="noopener noreferrer">
-            <img src={assets.instagram_icon} alt="Instagram" />
-          </a>
-          <a href="https://www.linkedin.com/in/maulana-riqza-al-fatir-aa0595321/" target="_blank" rel="noopener noreferrer">
-            <img src={assets.linkedin_icon} alt="LinkedIn" />
-          </a>
+          {/* AVAILABILITY */}
+          <div>
+            <h3 className="text-xs sm:text-sm tracking-widest text-neutral-500 mb-6">
+              AVAILABILITY
+            </h3>
+
+            <div className="bg-neutral-900 border border-neutral-800 rounded-2xl sm:rounded-3xl p-4 sm:p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="w-2.5 h-2.5 bg-green-500 rounded-full" />
+                <p className="text-white text-sm font-semibold">
+                  TERSEDIA UNTUK PROJECT
+                </p>
+              </div>
+
+              <p className="text-neutral-400 text-xs leading-relaxed">
+                Saat ini kami menerima proyek freelance dan kolaborasi
+                strategis. Mari realisasikan ide Anda menjadi baris kode
+                yang bernilai.
+              </p>
+            </div>
+          </div>
+
         </div>
-      </motion.div>
-    </motion.div>
+
+        {/* Divider */}
+        <div className="border-t border-neutral-800 my-10 md:my-12" />
+
+        {/* Bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-neutral-500 gap-4 text-center md:text-left">
+          <p className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+            Dibuat dengan
+            <span className="px-3 py-1 bg-neutral-800 rounded-full text-white">
+              NIAT BAIK
+            </span>
+            Oleh RiqzTech ID
+          </p>
+
+          <p>© 2026 — Bandung, ID</p>
+        </div>
+      </footer>
+    </section>
   )
 }
 
