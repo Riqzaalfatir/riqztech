@@ -31,8 +31,6 @@ import sun_icon from './sun_icon.svg'
 import moon_icon from './moon_icon.svg'
 import google_cloud from './Google-Cloud.png'
 import infobandungku from './info.png'
-import alifatimah from './alifatimah.png'
-import konsultan from './konsultan2.png'
 import pama from './pamapersada.webp'
 import gits from './GITS-2.webp'
 import infomedia from './infomedia.webp'
@@ -42,9 +40,7 @@ import teropong from './teropong.png'
 import xl from './xl.png'
 import swamedia from './swamedia.webp'
 import icommits from './icommits.jpg'
-import kurnia from './kurnia.png'
 import kontraktor from './kontraktor.png'
-import miracle from './miracle.png'
 import kurniarental from './kurniarental.png'
 
 export const company_logos = [
@@ -80,8 +76,6 @@ const assets = {
   menu_icon_dark,
   sun_icon,
   moon_icon,
-  konsultan,
-  alifatimah,
   infobandungku,
   pama,
   gits,
@@ -92,9 +86,7 @@ const assets = {
   xl,
   swamedia,
   icommits,
-  kurnia,
   kontraktor,
-  miracle,
   kurniarental
 }
 

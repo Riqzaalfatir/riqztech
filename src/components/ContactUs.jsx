@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { FaCheck, FaInstagram, FaWhatsapp, FaTwitter  } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaCheck, FaInstagram, FaWhatsapp, FaTwitter } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +15,15 @@ const ContactUs = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // FIXED: handleChange (typo dibenerkan)
+  // INIT AOS (tidak mengubah struktur lain)
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -68,26 +78,29 @@ const ContactUs = () => {
   };
 
   return (
-    <section id="contact"
-     className="py-20">
+    <section
+      id="contact"
+      className="py-20"
+      data-aos="fade-up"
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
 
           {/* LEFT SIDE */}
-          <div>
-            <h1 className="text-4xl font-bold mb-6">
-              Hubungi Riqztech
+          <div data-aos="fade-right">
+            <h1 className="text-4xl font-bold mb-6" data-aos="fade-down" data-aos-delay="100">
+              Konsultasi Bersama
             </h1>
 
-            <p className="text-gray-800 text-sm mb-3 leading-relaxed text-justify pl-1">
-              RiqzTech adalah web portfolio pribadi saya yang menampilkan data diri, kumpulan project, serta layanan pembuatan website yang profesional dan terpercaya. Saya menghadirkan solusi digital yang modern, responsif, dan sesuai kebutuhan, baik untuk personal, bisnis, hingga pengembangan brand Anda.
+            <p className="text-gray-800 text-sm mb-3 leading-relaxed text-justify pl-1" data-aos="fade-up" data-aos-delay="200">
+              RiqzTech merupakan web portfolio pribadi saya Maulana Riqza AlFatir yang menampilkan data diri, kumpulan project, dan layanan pembuatan website yang profesional dan terpercaya. Saya menghadirkan solusi digital yang modern, responsif, dan sesuai kebutuhan, baik untuk personal, bisnis, hingga pengembangan brand Anda.
             </p>
 
-            <p className="text-gray-800 text-sm mb-6 leading-relaxed text-justify pl-1">
+            <p className="text-gray-800 text-sm mb-6 leading-relaxed text-justify pl-1" data-aos="fade-up" data-aos-delay="300">
               Dengan pengalaman dalam pengembangan website dan proses kerja yang terstruktur, saya berkomitmen memberikan hasil terbaik di setiap project. Setiap layanan dikerjakan dengan det
             </p>
 
-            <ul className="space-y-3 text-gray-900 pl-3 mb-6">
+            <ul className="space-y-3 text-gray-900 pl-3 mb-6" data-aos="fade-up" data-aos-delay="400">
               <li className="flex items-center gap-4">
                 <div className="bg-black w-5 h-5 flex items-center justify-center rounded-full">
                   <FaCheck className="text-white text-xs" />
@@ -110,9 +123,11 @@ const ContactUs = () => {
               </li>
             </ul>
 
-            <p className="text-gray-800 text-sm leading-relaxed mb-4 text-justify pl-1">Hubungi kami melalui media sosial resmi atau WhatsApp untuk mendapatkan informasi harga, ketersediaan mobil, serta promo terbaru dari Kurnia Rental Mobil.</p>
+            <p className="text-gray-800 text-sm leading-relaxed mb-4 text-justify pl-1" data-aos="fade-up" data-aos-delay="500">
+              Hubungi saya melalui media sosial resmi atau WhatsApp untuk mendiskusikan kebutuhan website Anda, mulai dari konsultasi awal, estimasi biaya, hingga perencanaan pengembangan yang sesuai dengan tujuan bisnis Anda.
+            </p>
 
-            <ul className="pl-3 space-y-3 mb-6 ">
+            <ul className="pl-3 space-y-3 mb-6" data-aos="fade-up" data-aos-delay="600">
               <li className="flex items-center gap-3 font-semibold text-sm">
                 <FaWhatsapp className="text-xl md:text-2xl font-bold" />
                 +62 831-0285-1438
@@ -127,16 +142,17 @@ const ContactUs = () => {
               </li>
             </ul>
 
-            <p className="text-gray-800 text-sm leading-relaxed text-justify pl-1">Percayakan perjalanan Anda bersama Kurnia Rental Mobil. Kami siap menjadi partner transportasi terbaik untuk setiap kebutuhan Anda.</p>
+            <p className="text-gray-800 text-sm leading-relaxed text-justify pl-1" data-aos="fade-up" data-aos-delay="700">
+              Percayakan pengembangan website Anda kepada saya sebagai partner yang berkomitmen menghadirkan solusi untuk mendukung pertumbuhan Anda.
+            </p>
           </div>
 
           {/* RIGHT SIDE FORM */}
-          <div className="bg-white p-8 rounded-xl shadow-2xl mt-10">
-            <h2 className="text-2xl font-semibold mb-6">
-              Hubungi Kami
+          <div className="bg-white p-8 rounded-xl shadow-2xl mt-10" data-aos="fade-left">
+            <h2 className="text-2xl font-semibold mb-6" data-aos="zoom-in">
+              Kirim Pesan
             </h2>
 
-            {/* FIXED: Form tidak langsung ditutup */}
             <form onSubmit={handleSubmit} className="space-y-4">
 
               <div className="grid grid-cols-2 gap-4">
@@ -147,6 +163,8 @@ const ContactUs = () => {
                   value={formData.firstName}
                   onChange={handleChange}
                   required
+                  data-aos="zoom-in"
+                  data-aos-delay="100"
                   className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
                 />
 
@@ -157,6 +175,8 @@ const ContactUs = () => {
                   value={formData.lastName}
                   onChange={handleChange}
                   required
+                  data-aos="zoom-in"
+                  data-aos-delay="200"
                   className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
                 />
               </div>
@@ -168,6 +188,8 @@ const ContactUs = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                data-aos="fade-up"
+                data-aos-delay="300"
                 className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
               />
 
@@ -178,6 +200,8 @@ const ContactUs = () => {
                 value={formData.phone}
                 onChange={handleChange}
                 required
+                data-aos="fade-up"
+                data-aos-delay="400"
                 className="border h-8 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
               />
 
@@ -186,12 +210,14 @@ const ContactUs = () => {
                 placeholder="Detail kebutuhan website..."
                 value={formData.message}
                 onChange={handleChange}
+                data-aos="fade-up"
+                data-aos-delay="500"
                 className="border h-28 p-2 text-sm rounded-lg w-full border-slate-300 hover:border-black transition-all"
               />
 
-              <div className="mb-12">
+              <div className="mb-12" data-aos="fade-up" data-aos-delay="600">
                 <p className="font-bold mb-4">Layanan</p>
-                <div className="grid grid-cols-1  md:grid-cols-2 gap-4 text-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   {[
                     "Landing Page",
                     "Company Profile",
@@ -213,12 +239,15 @@ const ContactUs = () => {
               <button
                 type="submit"
                 disabled={loading}
+                data-aos="zoom-in-up"
+                data-aos-delay="700"
                 className="w-full bg-black text-white py-3 rounded-xl font-semibold transition"
               >
                 {loading ? "Mengirim..." : "Kirim Pesan"}
               </button>
             </form>
           </div>
+
         </div>
       </div>
     </section>

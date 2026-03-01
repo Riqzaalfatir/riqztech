@@ -13,7 +13,7 @@ const services = () => {
    const servicesData = [
   {
     title: 'Search Engine Optimization',
-    description: 'Kami bantu website anda tampil lebih optimal di hasil pencarian Google.',
+    description: 'Website tampil lebih optimal di hasil pencarian algoritma Google.',
     icon: FaSearch
   },
   {
@@ -34,11 +34,11 @@ const services = () => {
 ]
   return (
     <section id='services'
-      className='pt-20 pb-10'>
+      className='pt-20'>
       <div className="max-w-7xl mx-auto px-4">
     <div className="flex flex-col md:flex-row  justify-between">
-      <h3 className='text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-center'>Layanan Saya</h3>
-      <p className='text-xs md:text-sm md:text-right max-w-md text-slate-700 mb-10 text-center'>Investasi cerdas untuk hasil berkualitas. Temukan spesifikasi teknis yang paling sesuai dengan ambisi proyek Anda.</p>
+      <h3 data-aos="fade-right" className='text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4 text-center'>Layanan Saya</h3>
+      <p data-aos="fade-left" className='text-xs md:text-sm md:text-right max-w-md text-slate-700 mb-10 text-center'>Layanan integritas untuk hasil berkualitas. Temukan spesifikasi teknis yang paling sesuai dengan project Anda.</p>
     </div>
       <div className='flex flex-col md:grid grid-cols-2'>
         {servicesData.map((service, index)=>(
