@@ -12,7 +12,7 @@ const PaketCard = ({
   onLeave,
 }) => {
   return (
-    <div data-aos="fade-up"
+    <div 
       onMouseEnter={onHover}
       onMouseLeave={onLeave}
       className={`h-full flex flex-col justify-between p-8 relative 

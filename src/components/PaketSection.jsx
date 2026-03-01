@@ -9,7 +9,7 @@ const PaketSection = () => {
     <section className='pb-20'>
       <div className="max-w-7xl mx-auto px-4">
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 mb-12 items-stretch">
+        <div data-aos="fade-up" className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16 mb-12 items-stretch">
           {paketCard.map((item, index) => (
             <PaketCard
               key={index}
