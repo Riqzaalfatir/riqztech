@@ -30,7 +30,7 @@ const AboutSection = () => {
           data-aos="fade-right"
           data-aos-delay="300"
           className="text-slate-700 text-sm mb-4 text-justify leading-6">
-          Saat ini saya sebagai mahasiswa aktif Teknik Informatika semester 1 menuju 2 Universitas Komputer Indonesia program kelas Karyawan dengan minat pada web development. Saya membangun project menggunakan React, Next.js, TypeScript, dan Tailwind CSS dengan fokus pada clean code dan performa.
+          Saat ini saya sebagai mahasiswa aktif Teknik Informatika semester 2 Universitas Komputer Indonesia program kelas Karyawan dengan minat pada web development. Saya membangun project menggunakan React, Next.js, TypeScript, dan Tailwind CSS dengan fokus pada clean code dan performa.
         </p>
 
         <p
