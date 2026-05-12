@@ -195,7 +195,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <a href="https://wa.me/6283102851438"
+            <a href="https://wa.me/6283121712571"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-white border border-white/40 px-3 py-1 rounded-lg hover:bg-white hover:text-black transition">
