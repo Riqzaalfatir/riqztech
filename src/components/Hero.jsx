@@ -126,7 +126,7 @@ const Hero = () => {
               Fee Project
             </a>
 
-            <a href="/Maulana Riqza Al-Fatir..CV.pdf" download
+            <a href="/CV_Maulana Riqza Al-Fatir.pdf" download
               className="px-6 py-3 border border-slate-300 shadow-md rounded-xl 
                    font-medium tracking-wide
                    hover:bg-black hover:text-white transition duration-300  text-xs sm:text-sm md:text-lg">
